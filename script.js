@@ -113,16 +113,26 @@ window.onclick = function(event) {
   }
 }
 
-//Initial setting
-let myLibrary = [];
 let storedLibrary;
-let book1 = new Book('Harry Potter and the Philosopher\'s Stone', 'J.K.Rowling', 223, 'read');
-let book2 = new Book('Outlander', 'D.Gabaldon', 850, 'not read');
-let book3 = new Book('The Hobbit', 'J.R.R. Tolkien', 295, 'read');
 
-myLibrary.push(book1);
-myLibrary.push(book2);
-myLibrary.push(book3);
-localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+//Initial setting
+if (localStorage.length === 0) {
+  var myLibrary = [];
+
+  let book1 = new Book('Harry Potter and the Philosopher\'s Stone', 'J.K.Rowling', 223, 'read');
+  let book2 = new Book('Outlander', 'D.Gabaldon', 850, 'not read');
+  let book3 = new Book('The Hobbit', 'J.R.R. Tolkien', 295, 'read');
+
+  myLibrary.push(book1);
+  myLibrary.push(book2);
+  myLibrary.push(book3);
+
+  localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+} else {
+  var myLibrary = [];
+  for (const [key, value] of Object.entries(JSON.parse(localStorage.myLibrary))) {
+    myLibrary.splice(key, 0, value);
+  }
+}
 
 showAllBooks();
