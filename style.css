@@ -63,3 +63,12 @@ body {
   cursor: pointer;
   border: 0;
 }
+
+.bookStatus {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 0 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.7em;
+}
