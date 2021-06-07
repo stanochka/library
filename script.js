@@ -1,3 +1,4 @@
+//TODO: add LocalStorage to store data
 let myLibrary = [];
 
 function Book(title, author, pages, status) {
@@ -71,13 +72,13 @@ function deleteBookFromLibrary(book) {
   }
 }
 
-//TODO: fix bug with changing status again
 function changeBookStatus(book) {
   myLibrary[book.id].changeStatus();
   resetScreen();
   showAllBooks();
 }
 
+//TODO: add modal for form to input new data
 addBookButton.addEventListener('click', addBookToLibrary);
 
 function listenForChange() {
