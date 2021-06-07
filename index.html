@@ -11,6 +11,28 @@
   <h1>&#128214; My Library</h1>
   <button id='addBook'>NEW BOOK</button>
   <div id='container'></div>
+
+  <div id="newBook" class="modal">
+    <div class="modal-content">
+      <button id="closeModal">&times;</button>
+      <form id='newBookForm'>
+        <label for="title">Title</label><br>
+        <input type="text" id="title" name="title" placeholder="Book title"><br>
+        <label for="author">Author</label><br>
+        <input type="text" id="author" name="author" placeholder="Book author"><br>
+        <label for="pages">How many pages is the book?</label><br>
+        <input type="number" id="pages" name="pages" placeholder="Pages amount" min="1" max="10000"><br>
+        <label for="status">Have you read this book?</label><br>
+        <div class="checkcontainer">
+        <input type="radio" id="statusRead" name="status" value="read">
+        <label for="statusRead">Yes, I have.</label><br>
+        <input type="radio" id="statusNotRead" name="status" value="not read">
+        <label for="statusNotRead">No, I haven't.</label>
+        </div>
+        <input type="submit" value="ADD BOOK">
+      </form>
+    </div>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>

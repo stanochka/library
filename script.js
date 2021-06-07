@@ -17,13 +17,15 @@ function Book(title, author, pages, status) {
 }
 
 const container = document.querySelector('#container');
-const addBookButton = document.querySelector('#addBook');
+
+const form = document.forms.newBookForm;
+form.addEventListener('submit', addBookToLibrary);
 
 function addBookToLibrary() {
-  let title = prompt('Enter the title:');
-  let author = prompt('Enter the author:');
-  let pages = prompt('How many pages is the book?');
-  let status = prompt('Have you read it? (read/not read)');
+  let title = form.elements.title.value;
+  let author = form.elements.author.value;
+  let pages = form.elements.pages.value;
+  let status = form.elements.status.value;
   let book = new Book(title, author, pages, status);
   myLibrary.push(book);
   resetScreen();
@@ -49,7 +51,7 @@ function showAllBooks() {
 
     let deleteButton = document.createElement('button');
     deleteButton.classList.add('deleteButton');
-    deleteButton.textContent = 'x';
+    deleteButton.textContent = '×';
     bookCard.appendChild(deleteButton);
 
     container.appendChild(bookCard);
@@ -78,9 +80,6 @@ function changeBookStatus(book) {
   showAllBooks();
 }
 
-//TODO: add modal for form to input new data
-addBookButton.addEventListener('click', addBookToLibrary);
-
 function listenForChange() {
   let deleteButtons = document.querySelectorAll('.deleteButton');
   deleteButtons.forEach(button => {
@@ -96,6 +95,23 @@ function listenForChange() {
       changeBookStatus(book);
     };
   });
+}
+
+const addBookButton = document.querySelector('#addBook');
+const modal = document.querySelector('#newBook');
+const modalCloseButton = document.querySelector('#closeModal');
+
+addBookButton.onclick = function() {
+  modal.style.display = "block";
+}
+modalCloseButton.onclick = function() {
+  modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
 }
 
 //Initial setting
