@@ -1,14 +1,8 @@
-//TODO: add LocalStorage to store data
-let myLibrary = [];
-
 function Book(title, author, pages, status) {
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.status = status;
-  this.info = function() {
-  	return `${title} by ${author}, ${pages} pages`;
-  }
   this.changeStatus = function() {
     this.status === 'read'?
     this.status = 'not read' :
@@ -21,6 +15,7 @@ const container = document.querySelector('#container');
 const form = document.forms.newBookForm;
 form.addEventListener('submit', addBookToLibrary);
 
+//TODO: Fix bug with not saving new book data
 function addBookToLibrary() {
   let title = form.elements.title.value;
   let author = form.elements.author.value;
@@ -28,15 +23,17 @@ function addBookToLibrary() {
   let status = form.elements.status.value;
   let book = new Book(title, author, pages, status);
   myLibrary.push(book);
+  localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
   resetScreen();
   showAllBooks();
 }
 
 function showAllBooks() {
-  myLibrary.forEach(book => {
+  storedLibrary = JSON.parse(localStorage.myLibrary);
+  storedLibrary.forEach(book => {
     let bookCard = document.createElement('div');
-    bookCard.textContent = book.info();
-    bookCard.id = myLibrary.indexOf(book);
+    bookCard.textContent = `${book.title} by ${book.author}, ${book.pages} pages`;
+    bookCard.id = storedLibrary.indexOf(book);
     bookCard.classList.add('book');
 
     let bookStatus = document.createElement('div');
@@ -55,7 +52,7 @@ function showAllBooks() {
     bookCard.appendChild(deleteButton);
 
     container.appendChild(bookCard);
-  })
+  });
   listenForChange();
 }
 
@@ -68,6 +65,7 @@ function resetScreen() {
 function deleteBookFromLibrary(book) {
   if (confirm('Are you sure you want to delete this book?')) {
     myLibrary.splice(book.id, 1);
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
     book.parentNode.removeChild(book);
     resetScreen();
     showAllBooks();
@@ -76,6 +74,7 @@ function deleteBookFromLibrary(book) {
 
 function changeBookStatus(book) {
   myLibrary[book.id].changeStatus();
+  localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
   resetScreen();
   showAllBooks();
 }
@@ -115,6 +114,8 @@ window.onclick = function(event) {
 }
 
 //Initial setting
+let myLibrary = [];
+let storedLibrary;
 let book1 = new Book('Harry Potter and the Philosopher\'s Stone', 'J.K.Rowling', 223, 'read');
 let book2 = new Book('Outlander', 'D.Gabaldon', 850, 'not read');
 let book3 = new Book('The Hobbit', 'J.R.R. Tolkien', 295, 'read');
@@ -122,5 +123,6 @@ let book3 = new Book('The Hobbit', 'J.R.R. Tolkien', 295, 'read');
 myLibrary.push(book1);
 myLibrary.push(book2);
 myLibrary.push(book3);
+localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
 
 showAllBooks();
