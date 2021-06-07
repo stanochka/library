@@ -9,7 +9,7 @@ function Book(title, author, pages, status) {
   	return `${title} by ${author}, ${pages} pages`;
   }
   this.changeStatus = function() {
-    status === 'read'?
+    this.status === 'read'?
     this.status = 'not read' :
     this.status = 'read';
   }
@@ -65,7 +65,6 @@ function resetScreen() {
 function deleteBookFromLibrary(book) {
   if (confirm('Are you sure you want to delete this book?')) {
     myLibrary.splice(book.id, 1);
-    console.log(myLibrary);
     book.parentNode.removeChild(book);
     resetScreen();
     showAllBooks();
