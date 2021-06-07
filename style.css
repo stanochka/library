@@ -20,14 +20,14 @@ body {
   border: solid 1px;
   background: #FFFBF0;
   box-shadow: 10px 10px 15px -10px rgba(0,0,0,0.8);
+  position: relative;
 }
 
 .book:hover {
   transform: scale(1.05);
-  cursor: pointer;
 }
 
-button {
+#addBook {
   border: solid 1px black;
   box-shadow: none;
   display: inline-block;
@@ -41,11 +41,25 @@ button {
   color: #FFFBF0;
 }
 
-button:hover {
+#addBook:hover {
   transform: scale(1.1);
 }
 
-button:active, button:focus {
+#addBook:active, #addBook:focus {
   color: #FFFBF0;
   transform: scale(0.98);
+}
+
+.deleteButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  padding: 0 5px;
+  margin: 0;
+  font-size: .6em;
+  display: inline-block;
+  background: #FFFBF0;
+  color: #857552;
+  cursor: pointer;
+  border: 0;
 }
