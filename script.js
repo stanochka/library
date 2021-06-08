@@ -15,7 +15,6 @@ const container = document.querySelector('#container');
 const form = document.forms.newBookForm;
 form.addEventListener('submit', addBookToLibrary);
 
-//TODO: Fix bug with not saving new book data
 function addBookToLibrary() {
   let title = form.elements.title.value;
   let author = form.elements.author.value;
@@ -26,6 +25,7 @@ function addBookToLibrary() {
   localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
   resetScreen();
   showAllBooks();
+  return false;
 }
 
 function showAllBooks() {
