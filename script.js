@@ -113,7 +113,7 @@ window.onclick = function(event) {
 let storedLibrary;
 
 //Initial setting
-if (localStorage.length === 0) {
+if (localStorage.myLibrary === null) {
   var myLibrary = [];
 
   let book1 = new Book('Harry Potter and the Philosopher\'s Stone', 'J.K.Rowling', 223, 'read');
