@@ -1,4 +1,4 @@
-# Library
+# :books:Library
 
 Library app which can add and delete books, change book read status and store data using localStorage.
 
