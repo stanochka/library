@@ -3,11 +3,6 @@ function Book(title, author, pages, status) {
   this.author = author;
   this.pages = pages;
   this.status = status;
-  this.changeStatus = function() {
-    this.status === 'read'?
-    this.status = 'not read' :
-    this.status = 'read';
-  }
 }
 
 const container = document.querySelector('#container');
@@ -73,7 +68,9 @@ function deleteBookFromLibrary(book) {
 }
 
 function changeBookStatus(book) {
-  myLibrary[book.id].changeStatus();
+  myLibrary[book.id].status === 'read'?
+  myLibrary[book.id].status = 'not read' :
+  myLibrary[book.id].status = 'read';
   localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
   resetScreen();
   showAllBooks();
