@@ -82,12 +82,11 @@ body {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgba(0,0,0,0.5); 
 }
 
 .modal-content {
-  background: #FFFBF0;
+  background: #FEF5E1;
   margin: 5% auto;
   padding: 25px;
   border: 1px solid #857552;
@@ -101,7 +100,7 @@ body {
   margin: 0;
   border: 0;
   padding: 0;
-  background: #FFFBF0;
+  background: #FEF5E1;
   font-size: .7em;
   display: inline-block;
 }
@@ -118,6 +117,7 @@ input[type=text], input[type=number] {
   margin: 10px 0;
   display: inline-block;
   border: 1px solid #857552;
+  background: #FFFBF0;
   border-radius: 4px;
   box-sizing: border-box;
 }
